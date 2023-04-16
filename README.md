@@ -1,10 +1,10 @@
 # BMD Data Fetch
 
-[![PHP version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=ph&r=r&type=6e&v=1.0.0&x2=0)](#)
+[![PHP version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=ph&r=r&type=6e&v=1.0.0&x2=0)](https://packagist.org/packages/saidy/bmd-station-data-fetch)
 
-To fetch BMD real-time data from [BMD website](https://live3.bmd.gov.bd). 
+To fetch BMD real-time data from [BMD website](https://live3.bmd.gov.bd).
 
-### Examples
+## Examples
 
 ```php
 
