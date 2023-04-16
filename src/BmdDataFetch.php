@@ -1,0 +1,44 @@
+<?php
+
+namespace Saidy\BmdStationDataFetch;
+
+use GuzzleHttp\Client;
+use Saidy\BmdStationDataFetch\Helper;
+
+class BmdDataFetch
+{
+    public static function getStationList()
+    {
+        $token = Helper::getToken();
+        $url = "weather-condition/public.php?public=station&key={$token}";
+        $response = self::GET($url, true);
+        return $response["data"];
+    }
+
+    public static function getStationData($stationCode, $rows = false)
+    {
+        $token = Helper::getToken();
+        $url = "weather-condition/public.php?public=lastdata&key={$token}&stCode=$stationCode";
+        if($rows){
+            $url .= "&rows=true";
+        }
+        $response = self::GET($url, true);
+        $data = $response["data"];
+        return isset($data["row"]) ? $data["row"] : $data;
+    }
+
+    private static function GET($url, $json = false, $return_response = false)
+    {
+        $client = new Client([
+            'base_uri' => 'https://live3.bmd.gov.bd/',
+            // 'timeout'  => 2.0,
+        ]);
+        $response = $client->request('GET', $url);
+        $body = $response->getBody();
+        $stringBody = (string) $body;
+        if ($json) {
+            $stringBody = json_decode($stringBody, true);
+        }
+        return $return_response ? $response : $stringBody;
+    }
+}

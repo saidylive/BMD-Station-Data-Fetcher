@@ -1,0 +1,21 @@
+{
+    "name": "saidy/bmd-station-data-fetch",
+    "description": "Get current station data of BMD live station data from https://live3.bmd.gov.bd",
+    "version": "1.0.0",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Saidy\\BmdStationDataFetch\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Md. Sheikh Saidy",
+            "email": "saidylive@gmail.com"
+        }
+    ]
+}
