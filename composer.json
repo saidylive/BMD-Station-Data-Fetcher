@@ -1,7 +1,7 @@
 {
     "name": "saidy/bmd-station-data-fetch",
     "description": "Get current station data of BMD live station data from https://live3.bmd.gov.bd",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "type": "library",
     "require": {
