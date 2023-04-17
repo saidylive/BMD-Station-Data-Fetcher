@@ -117,9 +117,9 @@ class Decoder
         return $t > 0 ? "-" . $a : $a;
     }
 
-    public static function DecodeBMD($row)
+    public static function DecodeBMD($body)
     {
-        $e = explode(" ", $row->rbody);
+        $e = explode(" ", $body);
 
         $max_temp = self::getTempMax($e);
         $min_temp = self::getTempMin($e);
@@ -130,9 +130,8 @@ class Decoder
         $dry_bulb = self::getDryBulb($e);
 
         $output = [
-            "date_time" => $row->date_time,
-            "maximum_t" => $max_temp,
-            "minimum_t" => $min_temp,
+            "maximum_temp" => $max_temp,
+            "minimum_temp" => $min_temp,
             "rainfall" => $rainfall,
             "rainfall_3" => $rainfall3,
             "rainfall_6" => $rainfall6,

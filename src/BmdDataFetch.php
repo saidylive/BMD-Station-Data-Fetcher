@@ -4,6 +4,7 @@ namespace Saidy\BmdStationDataFetch;
 
 use GuzzleHttp\Client;
 use Saidy\BmdStationDataFetch\Helper;
+use Saidy\BmdStationDataFetch\Decoder;
 
 class BmdDataFetch
 {
@@ -19,11 +20,18 @@ class BmdDataFetch
     {
         $token = Helper::getToken();
         $url = "weather-condition/public.php?public=lastdata&key={$token}&stCode=$stationCode";
-        if($rows){
+        if ($rows) {
             $url .= "&rows=true";
         }
-        $response = self::GET($url, true);
+        // $response = self::GET($url, true);
+        $response = json_decode(file_get_contents('D:/Works/works/BMD-automation/station-data.json'), true);
         $data = $response["data"];
+        if (isset($data["row"])) {
+            foreach ($data["row"] as $key => $item) {
+                $decoded = Decoder::DecodeBMD($item["rbody"]);
+                $data["row"][$key] = array_merge($item, $decoded);
+            }
+        }
         return isset($data["row"]) ? $data["row"] : $data;
     }
 
