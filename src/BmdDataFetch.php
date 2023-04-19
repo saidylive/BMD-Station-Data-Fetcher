@@ -29,6 +29,7 @@ class BmdDataFetch
         if (isset($data["row"])) {
             foreach ($data["row"] as $key => $item) {
                 $decoded = Decoder::DecodeBMD($item["rbody"]);
+                unset($item["rbody"]);
                 $data["row"][$key] = array_merge($item, $decoded);
             }
         }
