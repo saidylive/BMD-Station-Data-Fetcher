@@ -9,9 +9,12 @@ class Helper
         $date_utc = new \DateTime("now", new \DateTimeZone("UTC"));
         $mtime = $date_utc->format("m-d");
         return "helloJoy{$mtime}";
+    }
 
-        // $mtime = gmdate("Y-m-d\TH:i:s\Z");
-        // $mtime = gmdate("m-d");
-        // return "helloJoy{$mtime}";
+    public static function changeDateTimeZone($datetime, $targetFormat)
+    {
+        $date_utc = new \DateTime($datetime, new \DateTimeZone("UTC"));
+        $date_utc->setTimezone(new \DateTimeZone("Asia/Dhaka"));
+        return $date_utc->format($targetFormat);
     }
 }

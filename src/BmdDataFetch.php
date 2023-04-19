@@ -27,6 +27,8 @@ class BmdDataFetch
         $data = $response["data"];
         if (isset($data["row"])) {
             foreach ($data["row"] as $key => $item) {
+                $item["date_time"] = Helper::changeDateTimeZone($item["date_time"], "Y-m-d H:i:s");
+                $item["timeUpdate"] = Helper::changeDateTimeZone($item["timeUpdate"], "Y-m-d H:i:s");
                 $decoded = Decoder::DecodeBMD($item["rbody"]);
                 unset($item["rbody"]);
                 $data["row"][$key] = array_merge($item, $decoded);
