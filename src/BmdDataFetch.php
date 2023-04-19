@@ -23,8 +23,7 @@ class BmdDataFetch
         if ($rows) {
             $url .= "&rows=true";
         }
-        // $response = self::GET($url, true);
-        $response = json_decode(file_get_contents('D:/Works/works/BMD-automation/station-data.json'), true);
+        $response = self::GET($url, true);
         $data = $response["data"];
         if (isset($data["row"])) {
             foreach ($data["row"] as $key => $item) {
