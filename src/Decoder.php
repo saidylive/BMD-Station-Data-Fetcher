@@ -52,11 +52,13 @@ class Decoder
                     $r = substr($n, 3, 1);
                     $s = substr($n, 1, 2);
                     $t = substr($n, 1, 3);
+                    if("99" == $s){
+                        $t = intval($r) > 0  ? floatval(0.1 * intval($r)) : "0";
+                    }
                 }
             }
         }
         return floatval($t);
-        // return "99" == $s && intval($r) > 0  ? floatval(0.1 * intval($r)) : ;
     }
 
     private static function getRainfall6($e)
