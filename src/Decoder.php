@@ -91,11 +91,9 @@ class Decoder
                     }
                 }
         }
-        if ("999" == $s) {
-            $t = "9" == $r ? -1 : (intval($r) > 0 ? intval($r) : "0");
-            if (intval($t) > 0) {
-                $t = .1 * intval($t);
-            }
+        $tt = "9" == $r ? -1 : (intval($r) > 0 ? intval($r) : "0");
+        if (intval($tt) > 0) {
+            $t = .1 * intval($t);
         }
         return floatval($t);
     }
@@ -104,7 +102,8 @@ class Decoder
     {
         $r = "0";
         $s = intval(substr($e[1], 2, 2));
-        $r = array_search($s, ["00", "06", "12", "18"]) !== false ? self::getRainfall6($e) : self::getRainfall3($e);
+        $r = self::getRainfall3($e);
+        // $r = array_search($s, ["00", "06", "12", "18"]) !== false ? self::getRainfall6($e) : self::getRainfall3($e);
         return floatval($r);
     }
 
