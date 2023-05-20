@@ -44,7 +44,8 @@ class Decoder
         $s = "0";
         $t = "0";
         $a = implode(" ", $e);
-        if (strpos($a, " 333 ") > 0 && (count($e = explode(" ", explode(" 333 ", $a)[1]))))
+        if (strpos($a, " 333 ") > 0) {
+            $e = explode(" ", explode(" 333 ", $a)[1]);
             for ($i = 0; $i < count($e); $i++) {
                 $n = $e[$i];
                 if ("6" ==  substr($n, 0, 1)) {
@@ -53,7 +54,9 @@ class Decoder
                     $t = substr($n, 1, 3);
                 }
             }
-        return "99" == $s && intval($r) > 0  ? floatval(0.1 * intval($r)) : floatval("0");
+        }
+        return floatval($t);
+        // return "99" == $s && intval($r) > 0  ? floatval(0.1 * intval($r)) : ;
     }
 
     private static function getRainfall6($e)
