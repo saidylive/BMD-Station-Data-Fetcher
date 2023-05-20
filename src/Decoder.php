@@ -52,7 +52,7 @@ class Decoder
                     $r = substr($n, 3, 1);
                     $s = substr($n, 1, 2);
                     $t = substr($n, 1, 3);
-                    if("99" == $s){
+                    if ("99" == $s) {
                         $t = intval($r) > 0  ? floatval(0.1 * intval($r)) : "0";
                     }
                 }
@@ -86,7 +86,7 @@ class Decoder
 
         if (strpos($a, " 333 ") > 0) {
             $n = explode(" ", explode(" 333 ", $a)[1]);
-            if (count($n) > 0)
+            if (count($n) > 0) {
                 for ($i = 0; $i < count($n); $i++) {
                     $u = $n[$i];
                     if ("7" == substr($u, 0, 1)) {
@@ -95,9 +95,12 @@ class Decoder
                         $t = substr($u, 1, 4);
                     }
                 }
+            }
         }
-        $tt = "9" == $r ? -1 : (intval($r) > 0 ? intval($r) : "0");
-        if (intval($tt) > 0) {
+        if ($s ==  "999") {
+            $t = "9" == $r ? -1 : (intval($r) > 0 ? intval($r) : "0");
+        }
+        if (intval($t) > 0) {
             $t = .1 * intval($t);
         }
         return floatval($t);
